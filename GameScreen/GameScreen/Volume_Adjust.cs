@@ -44,7 +44,7 @@ namespace GameScreen
 
         private void volume_Controll1_Load(object sender, EventArgs e)
         {
-            playMusic.URL = "Usagi_Flap.mp3";
+            playMusic.URL = "C:\\Users\\vuduc\\Desktop\\DSA\\BattleShip\\GameScreen\\GameScreen\\bin\\Debug\\Usagi Flap.wav";
             playMusic.Ctlcontrols.play();
         }
     }

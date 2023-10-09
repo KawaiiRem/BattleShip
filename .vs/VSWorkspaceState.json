@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BattleShip",
+    "\\BattleShip\\BattleShip",
+    "\\GameScreen",
+    "\\GameScreen\\GameScreen",
+    "\\GameScreen\\GameScreen\\bin",
+    "\\GameScreen\\GameScreen\\bin\\Debug",
+    "\\GameScreen\\GameScreen\\bin\\Release",
+    "\\GameScreen\\GameScreen\\Properties",
+    "\\WindowsFormsApp1"
+  ],
+  "SelectedNode": "\\GameScreen\\GameScreen\\bin\\Debug\\Usagi Flap.wav",
+  "PreviewInSolutionExplorer": false
+}
