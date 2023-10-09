@@ -44,7 +44,7 @@ namespace GameScreen
 
         private void volume_Controll1_Load(object sender, EventArgs e)
         {
-            playMusic.URL = "C:\\Users\\admin\\source\\repos\\GameScreen\\GameScreen\\bin\\Debug\\Usagi_Flap.mp3";
+            playMusic.URL = "Usagi_Flap.mp3";
             playMusic.Ctlcontrols.play();
         }
     }
