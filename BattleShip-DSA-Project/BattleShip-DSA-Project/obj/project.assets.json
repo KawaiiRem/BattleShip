@@ -8,23 +8,23 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "C:\\Users\\vuduc\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\source\\repos\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
+      "projectUniqueName": "C:\\Users\\vuduc\\Desktop\\DSA\\BattleShip\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
       "projectName": "BattleShip-DSA-Project",
-      "projectPath": "C:\\Users\\admin\\source\\repos\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\source\\repos\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\obj\\",
+      "projectPath": "C:\\Users\\vuduc\\Desktop\\DSA\\BattleShip\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
+      "packagesPath": "C:\\Users\\vuduc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vuduc\\Desktop\\DSA\\BattleShip\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vuduc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

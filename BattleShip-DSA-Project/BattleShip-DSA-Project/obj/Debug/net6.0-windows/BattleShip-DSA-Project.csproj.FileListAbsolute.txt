@@ -24,3 +24,13 @@ C:\Users\admin\source\repos\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\De
 C:\Users\admin\source\repos\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\MainPage.baml
 C:\Users\admin\source\repos\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\PlayPage.baml
 C:\Users\admin\source\repos\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\SettingPage.baml
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\MainPage.g.cs
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\PlayPage.g.cs
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\Pages\SettingPage.g.cs
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\BattleShip-DSA-Project_MarkupCompile.cache
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\BattleShip-DSA-Project_MarkupCompile.lref
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\BattleShip-DSA-Project.dll
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\refint\BattleShip-DSA-Project.dll
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\BattleShip-DSA-Project.pdb

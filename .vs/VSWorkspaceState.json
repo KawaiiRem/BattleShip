@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BattleShip",
+    "\\BattleShip-DSA-Project",
     "\\BattleShip\\BattleShip",
-    "\\GameScreen",
     "\\GameScreen\\GameScreen",
     "\\GameScreen\\GameScreen\\bin",
     "\\GameScreen\\GameScreen\\bin\\Debug",
     "\\GameScreen\\GameScreen\\bin\\Release",
-    "\\GameScreen\\GameScreen\\Properties",
-    "\\WindowsFormsApp1"
+    "\\GameScreen\\GameScreen\\Properties"
   ],
-  "SelectedNode": "\\GameScreen\\GameScreen\\bin\\Debug\\Usagi Flap.wav",
+  "SelectedNode": "\\BattleShip-DSA-Project\\BattleShip-DSA-Project.sln",
   "PreviewInSolutionExplorer": false
 }
