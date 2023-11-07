@@ -1,18 +1,18 @@
 ﻿BattleShip-DSA-Project
-1.0.0.0
+
 
 winexe
 C#
 .cs
-C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\
+C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Release\net6.0-windows\
 BattleShip_DSA_Project
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\App.xaml
 4-1818900443
 
-8119048289
+6-428803261
 1941138084172
 MainWindow.xaml;Pages\MainPage.xaml;Pages\PlayPage.xaml;Pages\SettingPage.xaml;
 

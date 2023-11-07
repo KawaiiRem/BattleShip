@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "oawTy022xv2DRKxgm8aGApAcd4w/CYefH6hMMiunKFi9ZkSJTdHZho+PK9KrImOaBFfiV7DEd91jx/9POR5Tpg==",
+  "dgSpecHash": "eLrXmmMjiU7a7UN2tkkxxYZkbtYS32OU8g8nWjrKGOtj0PYoNvt2yvUDp6rWQZ/k5w/jirnO6iJMdNW6LsGvLQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\source\\repos\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\vuduc\\Desktop\\DSA\\BattleShip\\BattleShip-DSA-Project\\BattleShip-DSA-Project\\BattleShip-DSA-Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vuduc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\vuduc\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\vuduc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\vuduc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.24\\microsoft.netcore.app.host.win-x64.6.0.24.nupkg.sha512"
+  ],
   "logs": []
 }
