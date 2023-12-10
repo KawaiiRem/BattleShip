@@ -12,18 +12,18 @@ namespace WindowsFormsApp1
 {
     public class Tile
     {
-        private int coordX;
-        private int coordY;
+        private int posRow;
+        private int posColume;
         private Button button;
         private Boolean shipPart = false;
         private MineFieldManager fieldManager;
         private int type = 0;
 
-        public Tile(Button button, int coordX, int coordY, MineFieldManager fieldManager)
+        public Tile(Button button, int posRow, int posColume, MineFieldManager fieldManager)
         {
             this.button = button;
-            this.coordX = coordX;
-            this.coordY = coordY;
+            this.posRow = posRow;
+            this.posColume = posColume;
             this.fieldManager = fieldManager;
             this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
             this.button.AllowDrop = true;
@@ -57,26 +57,26 @@ namespace WindowsFormsApp1
             return shipPart;
         }
 
-        public void drawPart(int x, int y, int type)
+        public void drawPart(int posRow, int posColume, int type)
         {
-            fieldManager.getTile(x, y).setType(type);
-            fieldManager.drawPart(x, y);
+            fieldManager.getTile(posRow, posColume).setType(type);
+            fieldManager.drawPart(posRow, posColume);
         }
         
-        public void reset(int x, int y)
+        public void reset(int posRow, int posColume)
         {
-            fieldManager.reset(x, y);
-            fieldManager.getTile(x, y).setType(0);
+            fieldManager.reset(posRow, posColume);
+            fieldManager.getTile(posRow, posColume).setType(0);
         }
 
-        public int getCoordX()
+        public int getPosRow()
         {
-            return coordX;
+            return posRow;
         }
 
-        public int getCoordY()
+        public int getPosColume()
         {
-            return coordY;
+            return posColume;
         }
         public Button getButton()
         {

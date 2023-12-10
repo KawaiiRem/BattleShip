@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeegBoi.cs" />
+    <Compile Include="MachineAction.cs" />
     <Compile Include="Ulti.cs" />
     <Compile Include="ShortPiece.cs" />
     <Compile Include="IShip.cs" />

@@ -21,34 +21,56 @@ namespace WindowsFormsApp1
             this.tile = tile;
             this.fieldManager = fieldManager;
         }
+
+        public Boolean getPermission()
+        {
+            return canDraw;
+        }
+
+        public Boolean getDrew()
+        {
+            return drew;
+        }
+
+
+        public void setState(int input)
+        {
+            state = input;
+        }
+
+        public int getState()
+        {
+            return state;
+        }
+
         public void drawPart()
         {
             if (state == 1)
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() + i,Constant.LongPieceID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() + i,Constant.LongPieceID);
                 }
             }
             if (state == 2)
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.drawPart(tile.getCoordY() + i, tile.getCoordX(), Constant.LongPieceID);
+                    tile.drawPart(tile.getPosRow() + i, tile.getPosColume(), Constant.LongPieceID);
                 }
             }
             if (state == 3)
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() - i, Constant.LongPieceID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() - i, Constant.LongPieceID);
                 }
             }
             if (state == 4)
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.drawPart(tile.getCoordY() -i , tile.getCoordX(),Constant.LongPieceID);
+                    tile.drawPart(tile.getPosRow() -i , tile.getPosColume(),Constant.LongPieceID);
                 }
             }
             drew = true;
@@ -60,7 +82,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() + i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() + i);
                 }
             }
 
@@ -68,7 +90,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.reset(tile.getCoordY() + i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() + i, tile.getPosColume());
                 }
             }
 
@@ -76,7 +98,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() - i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() - i);
                 }
             }
 
@@ -84,7 +106,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LongL; i++)
                 {
-                    tile.reset(tile.getCoordY() - i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() - i, tile.getPosColume());
                 }
             }
             drew = false;
@@ -108,60 +130,60 @@ namespace WindowsFormsApp1
 
         public void detect(Tile tile)
         {
-            if(state == 1 && (tile.getCoordX() + Constant.LongL <= Constant.MapColume))
+            if(state == 1 && (tile.getPosColume() + Constant.LongL <= Constant.MapColume))
             {
                 for(int i = 0; i < Constant.LongL; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() == Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == Constant.LongPieceID)
                     {
                         canDraw = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() != Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != Constant.LongPieceID)
                     {
                         canDraw = false;
                         break;
                     }
                 }
             }
-            if(state == 2 && (tile.getCoordY() + Constant.LongL <= Constant.MapRow))
+            if(state == 2 && (tile.getPosRow() + Constant.LongL <= Constant.MapRow))
             {
                 for(int i = 0; i <Constant.LongL; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() == Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() == Constant.LongPieceID)
                     {
                         canDraw = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() != Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() != Constant.LongPieceID)
                     {
                         canDraw = false;
                         break;
                     }
                 }
             }
-            if(state == 3 && (tile.getCoordX() - Constant.LongL >= 0-1))
+            if(state == 3 && (tile.getPosColume() - Constant.LongL >= 0-1))
             {
                 for(int i = 0; i<Constant.LongL; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()-i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() == Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()-i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() == Constant.LongPieceID)
                     {
                         canDraw = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()-i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() != Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()-i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() != Constant.LongPieceID)
                     {
                         canDraw = false;
                         break;
                     }
                 }
             }
-            if(state == 4 && (tile.getCoordY() - Constant.LongL >= 0-1))
+            if(state == 4 && (tile.getPosRow() - Constant.LongL >= 0-1))
             {
                 for(int i = 0; i<Constant.LongL; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() == Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == Constant.LongPieceID)
                     {
                         canDraw = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()-i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() != Constant.LongPieceID)
+                    if (fieldManager.getTile(tile.getPosRow()-i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() != Constant.LongPieceID)
                     {
                         canDraw = false;
                         break;

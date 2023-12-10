@@ -50,7 +50,7 @@ namespace MineSweaper
                         Location = new Point(x, y),
                         BackgroundImageLayout = ImageLayout.Stretch,
                     };
-                    tile[posRow, posColume] = new Tile(button, posColume, posRow, this);
+                    tile[posRow, posColume] = new Tile(button, posRow, posColume, this);
                     mineField.Controls.Add(tile[posRow, posColume].getButton());
                     x += Constant.TileWidth;
                 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Resources;
 
 namespace WindowsFormsApp1
 {
@@ -21,10 +22,12 @@ namespace WindowsFormsApp1
        
             InitializeComponent();
             mineField = new MineFieldManager(panel1);
+            MachineAction AI = new MachineAction(mineField);
             Ulti ulti = new Ulti(Utilities,mineField);
             ulti.addUlti();
             mineField.drawMineSquare();
-            
+            AI.setShip();
+
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)

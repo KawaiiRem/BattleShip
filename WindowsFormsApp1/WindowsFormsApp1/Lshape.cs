@@ -14,10 +14,10 @@ namespace WindowsFormsApp1
     {
         private Tile tile;
         private Boolean drew = false;
-        private int state = 1;
+        private int state = 4;
         private MineFieldManager fieldManager;
-        private Boolean canDrawH = false;
-        private Boolean canDrawV = false;
+        private Boolean canDrawH = false; // be able to draw horizontally
+        private Boolean canDrawV = false; // be able to draw vertically
 
         public Lshape(Tile tile, MineFieldManager fieldManager)
         {
@@ -25,6 +25,27 @@ namespace WindowsFormsApp1
             this.fieldManager = fieldManager;
         }
 
+        public int getState()
+        {
+            return state;
+        }
+
+        public Boolean getDrew()
+        {
+            return drew;
+        }
+
+        public void setState(int input)
+        {
+            state = input;
+        }
+
+        public Boolean getPermission()
+        {
+            if (canDrawH == false || canDrawV == false)
+                return false;
+            return true;
+        }
 
         public void drawPart()
         {
@@ -32,11 +53,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() - i,Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() - i,Constant.LshapeID);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.drawPart(tile.getCoordY() - i, tile.getCoordX(),Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow() - i, tile.getPosColume(),Constant.LshapeID);
                 }
             }
 
@@ -44,11 +65,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.drawPart(tile.getCoordY() - i, tile.getCoordX(),Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow() - i, tile.getPosColume(),Constant.LshapeID);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() + i,Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() + i,Constant.LshapeID);
                 }
             }
 
@@ -56,11 +77,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() + i, Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() + i, Constant.LshapeID);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.drawPart(tile.getCoordY() + i, tile.getCoordX(), Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow() + i, tile.getPosColume(), Constant.LshapeID);
                 }
             }
 
@@ -68,11 +89,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.drawPart(tile.getCoordY() + i, tile.getCoordX(), Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow() + i, tile.getPosColume(), Constant.LshapeID);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() - i, Constant.LshapeID);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() - i, Constant.LshapeID);
                 }
             }
 
@@ -97,15 +118,15 @@ namespace WindowsFormsApp1
         }
         public void detect(Tile tile)
         {
-            if((tile.getCoordX() - Constant.LshapeV >= 0-1 && tile.getCoordY() - Constant.LshapeH >= 0-1) && state == 1)
+            if((tile.getPosColume() - Constant.LshapeV >= 0-1) && (tile.getPosRow() - Constant.LshapeH >= 0-1) && state == 1)
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    if(fieldManager.getTile(tile.getCoordY(),tile.getCoordX()-i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() == Constant.LshapeID)
+                    if(fieldManager.getTile(tile.getPosRow(),tile.getPosColume()-i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() == Constant.LshapeID)
                     {
                         canDrawV = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()-i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()-i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() != Constant.LshapeID)
                     {
                         canDrawV = false;
                         break;
@@ -113,26 +134,26 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY()-i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() == 1)
+                    if (fieldManager.getTile(tile.getPosRow()-i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == 1)
                     {
                         canDrawH = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()-i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() != 1)
+                    if (fieldManager.getTile(tile.getPosRow()-i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() != 1)
                     {
                         canDrawH = false;
                         break;
                     }
                 }
             }
-            if ((tile.getCoordX() + Constant.LshapeH <= Constant.MapColume && tile.getCoordY() - Constant.LshapeV >= 0-1) && state == 2)
+            if ((tile.getPosColume() + Constant.LshapeH <= Constant.MapColume && tile.getPosRow() - Constant.LshapeV >= 0-1) && state == 2)
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY()-i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()-i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == Constant.LshapeID)
                     {
                         canDrawV = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()-i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() - i, tile.getCoordX()).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()-i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() != Constant.LshapeID)
                     {
                         canDrawV = false;
                         break;
@@ -140,26 +161,26 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == Constant.LshapeID)
                     {
                         canDrawH = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != Constant.LshapeID)
                     {
                         canDrawH = false;
                         break;
                     }
                 }
             }
-            if ((tile.getCoordX() + Constant.LshapeV <= Constant.MapColume && tile.getCoordY() + Constant.LshapeH <= Constant.MapRow) && state == 3)
+            if ((tile.getPosColume() + Constant.LshapeV <= Constant.MapColume && tile.getPosRow() + Constant.LshapeH <= Constant.MapRow) && state == 3)
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()+i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()+i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == Constant.LshapeID)
                     {
                         canDrawV = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()+i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() + i).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()+i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != Constant.LshapeID)
                     {
                         canDrawV = false;
                         break;
@@ -167,26 +188,26 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() == Constant.LshapeID)
                     {
                         canDrawH = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() != Constant.LshapeID)
                     {
                         canDrawH = false;
                         break;
                     }
                 }
             }
-            if ((tile.getCoordX() - Constant.LshapeH >= 0-1 && tile.getCoordY() + Constant.LshapeV <= Constant.MapRow) && state == 4)
+            if ((tile.getPosColume() - Constant.LshapeH >= 0-1 && tile.getPosRow() + Constant.LshapeV <= Constant.MapRow) && state == 4)
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() == 0 || fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() == Constant.LshapeID)
                     {
                         canDrawV = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY()+i, tile.getCoordX()).getType() != 0 && fieldManager.getTile(tile.getCoordY() + i, tile.getCoordX()).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow()+i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() != Constant.LshapeID)
                     {
                         canDrawV = false;
                         break;
@@ -194,11 +215,11 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()-i).getType() == 0 || fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() == Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()-i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() == Constant.LshapeID)
                     {
                         canDrawH = true;
                     }
-                    if (fieldManager.getTile(tile.getCoordY(), tile.getCoordX()-i).getType() != 0 && fieldManager.getTile(tile.getCoordY(), tile.getCoordX() - i).getType() != Constant.LshapeID)
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume()-i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() != Constant.LshapeID)
                     {
                         canDrawH = false;
                         break;
@@ -212,11 +233,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() - i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() - i);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.reset(tile.getCoordY() - i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() - i, tile.getPosColume());
                 }
             }
 
@@ -224,11 +245,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.reset(tile.getCoordY() - i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() - i, tile.getPosColume());
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() + i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() + i);
                 }
             }
 
@@ -236,11 +257,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() + i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() + i);
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.reset(tile.getCoordY() + i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() + i, tile.getPosColume());
                 }
             }
 
@@ -248,11 +269,11 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.LshapeV; i++)
                 {
-                    tile.reset(tile.getCoordY() + i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() + i, tile.getPosColume());
                 }
                 for (int i = 1; i < Constant.LshapeH; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() - i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() - i);
                 }
             }
             drew = false;

@@ -13,5 +13,8 @@ namespace WindowsFormsApp1
         void drawPart();    
         void reset();
         void setTile(Tile tile);
+        int getState();
+        Boolean getPermission();
+        Boolean getDrew();
     }
 }
