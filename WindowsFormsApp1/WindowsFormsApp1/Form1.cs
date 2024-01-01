@@ -23,9 +23,12 @@ namespace WindowsFormsApp1
             InitializeComponent();
             mineField = new MineFieldManager(panel1);
             MachineAction AI = new MachineAction(mineField);
+            Graph graph = new Graph();
             Ulti ulti = new Ulti(Utilities,mineField);
             ulti.addUlti();
             mineField.drawMineSquare();
+            //graph.addFieldVerticies(mineField);
+            //graph.addFieldEdge(mineField);
             AI.setShip();
 
         }

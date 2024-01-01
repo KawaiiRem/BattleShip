@@ -22,6 +22,7 @@ namespace MineSweaper
         private BeegBoi beegboi;
         private ShortPiece spiece;
         private int signalReceive = 0;
+        private Graph graph;
         #endregion
 
         #region initiate 
@@ -29,6 +30,7 @@ namespace MineSweaper
         {
             tile = new Tile[Constant.MapRow + 4, Constant.MapColume+1];
             this.mineField = mineField;
+            graph = new Graph();    
         }
         #endregion
 
@@ -36,7 +38,6 @@ namespace MineSweaper
 
         public void drawMineSquare()
         {
-
             int x = 0;
             int y = 0;
             for (posRow = 0; posRow < Constant.MapRow; posRow++)
@@ -57,6 +58,9 @@ namespace MineSweaper
                 x = 0;
                 y += Constant.TileHeight;
             }
+
+            fillGraph();
+
             Button sele1 = new Button()
             {
                 Width = Constant.TileWidth,
@@ -156,6 +160,17 @@ namespace MineSweaper
         public ShortPiece getShortPiece()
         {
             return spiece;
+        }
+
+        public void fillGraph()
+        {
+            graph.addFieldVerticies(this);
+            graph.addFieldEdge(this);
+        }
+
+        public Graph getGraph()
+        {
+            return graph;
         }
         #endregion
     }

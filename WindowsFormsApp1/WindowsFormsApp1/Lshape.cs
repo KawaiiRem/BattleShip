@@ -18,11 +18,24 @@ namespace WindowsFormsApp1
         private MineFieldManager fieldManager;
         private Boolean canDrawH = false; // be able to draw horizontally
         private Boolean canDrawV = false; // be able to draw vertically
+        private int health = Constant.LshapeV + Constant.LshapeH;
 
         public Lshape(Tile tile, MineFieldManager fieldManager)
         {
             this.tile = tile;
             this.fieldManager = fieldManager;
+        }
+
+        public void reduceHealth()
+        {
+            health--;
+        }
+
+        public Boolean alive()
+        {
+            if (health == 0)
+                return false;
+            return true;
         }
 
         public int getState()

@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace WindowsFormsApp1
 {
@@ -18,6 +19,7 @@ namespace WindowsFormsApp1
         private Boolean shipPart = false;
         private MineFieldManager fieldManager;
         private int type = 0;
+        private int state = 1;
 
         public Tile(Button button, int posRow, int posColume, MineFieldManager fieldManager)
         {
@@ -25,10 +27,24 @@ namespace WindowsFormsApp1
             this.posRow = posRow;
             this.posColume = posColume;
             this.fieldManager = fieldManager;
-            this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
-            this.button.AllowDrop = true;
+            formAction();
         }
 
+        public void formAction()
+        {
+            if(state == 0)
+            {
+                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
+                this.button.AllowDrop = true;
+            }
+            if (state == 1)
+            {
+                this.button.Click += new System.EventHandler(attackPlayer);
+                this.button.AllowDrop = true;
+                fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(this));
+            }
+        }
+        
         public void isShip(Boolean input)
         {
             if (input == true)
@@ -42,6 +58,7 @@ namespace WindowsFormsApp1
                 button.BackColor = Color.Transparent;
             }
         }
+        
         public int getType()
         {
             return type;
@@ -86,6 +103,13 @@ namespace WindowsFormsApp1
         {
             e.Effect = e.AllowedEffect;
             fieldManager.getShip().setTile(this);
+        }
+
+        public void attackPlayer(Object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.BackColor = Color.Gray;
+            button.Enabled = false;
         }
     }
 }

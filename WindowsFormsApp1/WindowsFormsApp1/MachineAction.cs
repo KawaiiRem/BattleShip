@@ -22,11 +22,11 @@ namespace WindowsFormsApp1.Resources
             {
                 for (int type = 1; type <= 4; type++)
                 {
-                    for (int posRow = 0; posRow < Constant.MapRow; posRow += 4)
+                    for (int posRow = 0; posRow < Constant.MapRow; posRow += 1)
                     {
-                        for (int posColume = 0; posColume < Constant.MapColume; posColume += 4)
+                        for (int posColume = 0; posColume < Constant.MapColume; posColume += 1)
                         {
-                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 15)
+                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 5)
                             {
                                 switch (type)
                                 {

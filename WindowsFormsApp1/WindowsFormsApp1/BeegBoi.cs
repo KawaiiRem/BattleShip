@@ -15,10 +15,24 @@ namespace WindowsFormsApp1
         private int state = 1;
         private MineFieldManager fieldManager;
         private Boolean canDraw = false;
+        private int health = Constant.BeegBoiV + Constant.BeegBoiH;
+
         public BeegBoi(Tile tile, MineFieldManager fieldManager)
         {
             this.tile = tile;
             this.fieldManager = fieldManager;
+        }
+
+        public void reduceHealth()
+        {
+            health--;
+        }
+
+        public Boolean alive()
+        {
+            if (health == 0)
+                return false;
+            return true;
         }
 
         public int getState()
