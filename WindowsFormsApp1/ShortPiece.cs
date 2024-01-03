@@ -12,39 +12,77 @@ namespace WindowsFormsApp1
         private Tile tile;
         private Boolean drew = false;
         private int state = 1;
+        private MineFieldManager fieldManager;
+        private Boolean canDraw = false;
+        private int health = Constant.ShortL;
 
-        public ShortPiece(Tile tile)
+        public ShortPiece(Tile tile, MineFieldManager fieldManager)
         {
             this.tile = tile;
+            this.fieldManager = fieldManager;
         }
+
+        public void reduceHealth()
+        {
+            health--;
+        }
+
+        public Boolean alive()
+        {
+            if (health == 0)
+                return false;
+            return true;
+        }
+
+        public int getState()
+        {
+            return state;
+        }
+
+        public void setState(int input)
+        {
+            state = input;
+        }
+
+        public Boolean getDrew()
+        {
+            return drew;
+        }
+
+
+        public Boolean getPermission()
+        {
+            return canDraw;
+        }
+
         public void drawPart()
         {
             if (state == 1)
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() + i, Constant.ShortL);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() + i, Constant.ShortPieceID);
                 }
             }
             if (state == 2)
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.drawPart(tile.getCoordY() + i, tile.getCoordX(), Constant.ShortL);
+                    tile.drawPart(tile.getPosRow() + i, tile.getPosColume(), Constant.ShortPieceID);
                 }
             }
             if (state == 3)
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.drawPart(tile.getCoordY(), tile.getCoordX() - i, Constant.ShortL);
+                    tile.drawPart(tile.getPosRow(), tile.getPosColume() - i, Constant.ShortPieceID);
                 }
             }
             if (state == 4)
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.drawPart(tile.getCoordY() - i, tile.getCoordX(), Constant.ShortL);
+                    tile.drawPart(tile.getPosRow() - i, tile.getPosColume(), Constant.ShortPieceID);
                 }
             }
             drew = true;
@@ -56,7 +94,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() + i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() + i);
                 }
             }
 
@@ -64,7 +102,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.reset(tile.getCoordY() + i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() + i, tile.getPosColume());
                 }
             }
 
@@ -72,7 +110,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.reset(tile.getCoordY(), tile.getCoordX() - i);
+                    tile.reset(tile.getPosRow(), tile.getPosColume() - i);
                 }
             }
 
@@ -80,53 +118,105 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < Constant.ShortL; i++)
                 {
-                    tile.reset(tile.getCoordY() - i, tile.getCoordX());
+                    tile.reset(tile.getPosRow() - i, tile.getPosColume());
                 }
             }
+            drew = false;
         }
 
         public void shiftState()
         {
-            state++;
-            if (state == 5)
+            canDraw = false;
+            detect(tile);
+            if (canDraw == true)
             {
-                state = 1;
+                if (drew == true)
+                    reset();
+                state++;
+                if (state == 5)
+                {
+                    state = 1;
+                }
             }
-            detect();
         }
-
-        public void detect()
+        
+        public void detect(Tile tile) 
         {
-            if ((tile.getCoordX() + Constant.ShortL > Constant.MapColume) && state == 1)
+            if (state == 1 && (tile.getPosColume() + Constant.ShortL <= Constant.MapColume))
             {
-                shiftState();
-                detect();
+                for (int i = 0; i < Constant.ShortL; i++)
+                {
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() == Constant.ShortPieceID)
+                    {
+                        canDraw = true;
+                    }
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + i).getType() != Constant.ShortPieceID)
+                    {
+                        canDraw = false;
+                        break;
+                    }
+                }
             }
-
-            if ((tile.getCoordY() + Constant.ShortL > Constant.MapRow) && state == 2)
+            if (state == 2 && (tile.getPosRow() + Constant.ShortL <= Constant.MapRow))
             {
-                shiftState();
-                detect();
+                for (int i = 0; i < Constant.ShortL; i++)
+                {
+                    if (fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() == Constant.ShortPieceID)
+                    {
+                        canDraw = true;
+                    }
+                    if (fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() + i, tile.getPosColume()).getType() != Constant.ShortPieceID)
+                    {
+                        canDraw = false;
+                        break;
+                    }
+                }
             }
-            if ((tile.getCoordX() - Constant.ShortL < 0) && state == 3)
+            if (state == 3 && (tile.getPosColume() - Constant.ShortL >= 0 -1))
             {
-                shiftState();
-                detect();
+                for (int i = 0; i < Constant.ShortL; i++)
+                {
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() == 0 || fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() == Constant.ShortPieceID)
+                    {
+                        canDraw = true;
+                    }
+                    if (fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() != 0 && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() - i).getType() != Constant.ShortPieceID)
+                    {
+                        canDraw = false;
+                        break;
+                    }
+                }
             }
-            if ((tile.getCoordY() - Constant.ShortL < 0) && state == 4)
+            if (state == 4 && (tile.getPosRow() - Constant.ShortL >= 0-1))
             {
-                shiftState();
-                detect();
+                for (int i = 0; i < Constant.ShortL; i++)
+                {
+                    if (fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == 0 || fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() == Constant.ShortPieceID)
+                    {
+                        canDraw = true;
+                    }
+                    if (fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() != 0 && fieldManager.getTile(tile.getPosRow() - i, tile.getPosColume()).getType() != Constant.ShortPieceID)
+                    {
+                        canDraw = false;
+                        break;
+                    }
+                }
             }
         }
 
         public void setTile(Tile tile)
         {
-            if (drew == true)
-                reset();
-            this.tile = tile;
-            detect();
-            drawPart();
+            canDraw = false;
+            detect(tile);
+            if (canDraw == true)
+            {
+                if (drew == true)
+                {
+                    reset();
+                }
+                this.tile = tile;
+                drawPart();
+            }
         }
     }
 }

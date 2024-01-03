@@ -8,10 +8,13 @@ namespace WindowsFormsApp1
 {
     public interface IShip
     {
-        void detect();
+        void detect(Tile tile);
         void shiftState();
         void drawPart();    
         void reset();
         void setTile(Tile tile);
+        int getState();
+        Boolean getPermission();
+        Boolean getDrew();
     }
 }

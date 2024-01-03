@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Resources;
 
 namespace WindowsFormsApp1
 {
@@ -21,8 +22,15 @@ namespace WindowsFormsApp1
        
             InitializeComponent();
             mineField = new MineFieldManager(panel1);
+            MachineAction AI = new MachineAction(mineField);
+            Graph graph = new Graph();
+            Ulti ulti = new Ulti(Utilities,mineField);
+            ulti.addUlti();
             mineField.drawMineSquare();
-            
+            //graph.addFieldVerticies(mineField);
+            //graph.addFieldEdge(mineField);
+            AI.setShip();
+
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -31,10 +39,22 @@ namespace WindowsFormsApp1
             pictureBox1.DoDragDrop(pictureBox1.Image, DragDropEffects.Move);
         }
 
+        private void pictureBox1_MouseClick(object sender, EventArgs e) 
+        {
+            Button button = sender as Button;
+            mineField.setSignal(Constant.LshapeID);
+        }
+
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
             mineField.setSignal(Constant.LongPieceID);
             pictureBox2.DoDragDrop(pictureBox2.Image, DragDropEffects.Move);    
+        }
+
+        private void pictureBox2_MouseClick(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            mineField.setSignal(Constant.LongPieceID);
         }
 
         private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
@@ -43,10 +63,22 @@ namespace WindowsFormsApp1
             pictureBox3.DoDragDrop(pictureBox3.Image, DragDropEffects.Move);           
         }
 
+        private void pictureBox3_MouseClick(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            mineField.setSignal(Constant.BeegBoiID);
+        }
+
         private void pictureBox4_MouseDown(object sender, MouseEventArgs e)
         {
             mineField.setSignal(Constant.ShortPieceID);
             pictureBox4.DoDragDrop(pictureBox4.Image, DragDropEffects.Move);
+        }
+
+        private void pictureBox4_MouseClick(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            mineField.setSignal(Constant.ShortPieceID);
         }
     }
 }

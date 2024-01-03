@@ -3,33 +3,48 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace WindowsFormsApp1
 {
     public class Tile
     {
-        private int coordX;
-        private int coordY;
+        private int posRow;
+        private int posColume;
         private Button button;
         private Boolean shipPart = false;
         private MineFieldManager fieldManager;
         private int type = 0;
+        private int state = 1;
 
-        public Tile(Button button, int coordX, int coordY, MineFieldManager fieldManager)
+        public Tile(Button button, int posRow, int posColume, MineFieldManager fieldManager)
         {
             this.button = button;
-            this.coordX = coordX;
-            this.coordY = coordY;
+            this.posRow = posRow;
+            this.posColume = posColume;
             this.fieldManager = fieldManager;
-            this.button.Click += btnEvent;
-            this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
-            this.button.DragDrop += new System.Windows.Forms.DragEventHandler(btnEventDrop);
-            this.button.AllowDrop = true;
+            formAction();
         }
 
+        public void formAction()
+        {
+            if(state == 0)
+            {
+                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
+                this.button.AllowDrop = true;
+            }
+            if (state == 1)
+            {
+                this.button.Click += new System.EventHandler(attackPlayer);
+                this.button.AllowDrop = true;
+                fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(this));
+            }
+        }
+        
         public void isShip(Boolean input)
         {
             if (input == true)
@@ -43,7 +58,7 @@ namespace WindowsFormsApp1
                 button.BackColor = Color.Transparent;
             }
         }
-
+        
         public int getType()
         {
             return type;
@@ -59,53 +74,42 @@ namespace WindowsFormsApp1
             return shipPart;
         }
 
-        public int checkType(int x, int y)
+        public void drawPart(int posRow, int posColume, int type)
         {
-            return fieldManager.getTile(x, y).getType();
-        }
-
-        public void drawPart(int x, int y, int type)
-        {
-                setType(type);
-                fieldManager.drawPart(x, y);
-                fieldManager.getTile(x, y).getButton().Enabled = false;
+            fieldManager.getTile(posRow, posColume).setType(type);
+            fieldManager.drawPart(posRow, posColume);
         }
         
-        public void reset(int x, int y)
+        public void reset(int posRow, int posColume)
         {
-            fieldManager.reset(x, y);
-            fieldManager.getTile(x, y).getButton().Enabled = true;
-            type = 0;
+            fieldManager.reset(posRow, posColume);
+            fieldManager.getTile(posRow, posColume).setType(0);
         }
 
-        public int getCoordX()
+        public int getPosRow()
         {
-            return coordX;
+            return posRow;
         }
 
-        public int getCoordY()
+        public int getPosColume()
         {
-            return coordY;
+            return posColume;
         }
         public Button getButton()
         {
             return button;
         }
-
-        public void btnEvent(Object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-            fieldManager.getShip().setTile(this);
-        }
-
         public void btnEventEnter(Object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
+            fieldManager.getShip().setTile(this);
         }
 
-        public void btnEventDrop(Object sender, DragEventArgs e)
+        public void attackPlayer(Object sender, EventArgs e)
         {
-            fieldManager.getShip().setTile(this);
+            Button button = sender as Button;
+            button.BackColor = Color.Gray;
+            button.Enabled = false;
         }
     }
 }
