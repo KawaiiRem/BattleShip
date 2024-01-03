@@ -74,5 +74,10 @@ namespace WindowsFormsApp1
             Button button = sender as Button;
             mineField.setSignal(Constant.ShortPieceID);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

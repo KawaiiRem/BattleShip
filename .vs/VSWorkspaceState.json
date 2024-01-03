@@ -1,13 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\BattleShip",
     "\\BattleShip-DSA-Project",
-    "\\BattleShip\\BattleShip",
-    "\\GameScreen\\GameScreen",
-    "\\GameScreen\\GameScreen\\bin",
-    "\\GameScreen\\GameScreen\\bin\\Debug",
-    "\\GameScreen\\GameScreen\\bin\\Release",
-    "\\GameScreen\\GameScreen\\Properties"
+    "\\GameScreen",
+    "\\WindowsFormsApp1"
   ],
   "SelectedNode": "\\BattleShip-DSA-Project\\BattleShip-DSA-Project.sln",
   "PreviewInSolutionExplorer": false
