@@ -17,9 +17,8 @@ namespace WindowsFormsApp1
         private MineFieldManager fieldManager;
         private int health = Constant.LongL;
 
-        public LongPiece(Tile tile, MineFieldManager fieldManager)
+        public LongPiece(MineFieldManager fieldManager)
         {
-            this.tile = tile;
             this.fieldManager = fieldManager;
         }
 

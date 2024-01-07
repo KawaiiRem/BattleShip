@@ -104,7 +104,7 @@ namespace WindowsFormsApp1
             // 
             this.Utilities.Location = new System.Drawing.Point(757, 307);
             this.Utilities.Name = "Utilities";
-            this.Utilities.Size = new System.Drawing.Size(243, 155);
+            this.Utilities.Size = new System.Drawing.Size(243, 245);
             this.Utilities.TabIndex = 5;
             // 
             // Form1
@@ -118,8 +118,11 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "BattleShip";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

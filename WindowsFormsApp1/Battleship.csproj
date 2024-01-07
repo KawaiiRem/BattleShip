@@ -52,7 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeegBoi.cs" />
+    <Compile Include="StarAttack.cs" />
+    <Compile Include="SquareAttack.cs" />
     <Compile Include="Edge.cs" />
+    <Compile Include="ISkill.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="MachineAction.cs" />

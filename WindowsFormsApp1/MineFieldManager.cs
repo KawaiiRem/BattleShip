@@ -23,12 +23,14 @@ namespace MineSweaper
         private ShortPiece spiece;
         private int signalReceive = 0;
         private Graph graph;
+        private SquareAttack squareAttack;
+        private StarAttack starAttack;
         #endregion
 
         #region initiate 
         public MineFieldManager(Panel mineField)
         {
-            tile = new Tile[Constant.MapRow + 4, Constant.MapColume+1];
+            tile = new Tile[Constant.MapRow, Constant.MapColume];
             this.mineField = mineField;
             graph = new Graph();    
         }
@@ -60,50 +62,13 @@ namespace MineSweaper
             }
 
             fillGraph();
-
-            Button sele1 = new Button()
-            {
-                Width = Constant.TileWidth,
-                Height = Constant.TileHeight,
-                Location = new Point(500, 100),
-                BackColor = Color.Violet,
-                BackgroundImageLayout = ImageLayout.Stretch,
-            };
-            tile[Constant.MapRow, Constant.MapColume] = new Tile(sele1, 100, 100, this);
-            lshape = new Lshape(tile[Constant.MapRow, Constant.MapColume],this);
-
-            Button sele2 = new Button()
-            {
-                Width = Constant.TileWidth,
-                Height = Constant.TileHeight,
-                Location = new Point(500, 200),
-                BackColor = Color.Blue,
-                BackgroundImageLayout = ImageLayout.Stretch,
-            };
-            tile[Constant.MapRow + 1, Constant.MapColume] = new Tile(sele2, 100, 100, this);
-            lpiece = new LongPiece(tile[Constant.MapRow + 1, Constant.MapColume],this);
-
-            Button sele3 = new Button()
-            {
-                Width = Constant.TileWidth,
-                Height = Constant.TileHeight,
-                Location = new Point(500, 300),
-                BackColor = Color.Blue,
-                BackgroundImageLayout = ImageLayout.Stretch,
-            };
-            tile[Constant.MapRow + 2, Constant.MapColume] = new Tile(sele3, 100, 100, this);
-            beegboi = new BeegBoi(tile[Constant.MapRow + 2, Constant.MapColume],this);
-
-            Button sele4 = new Button()
-            {
-                Width = Constant.TileWidth,
-                Height = Constant.TileHeight,
-                Location = new Point(500, 300),
-                BackColor = Color.Blue,
-                BackgroundImageLayout = ImageLayout.Stretch,
-            };
-            tile[Constant.MapRow + 3, Constant.MapColume] = new Tile(sele4, 100, 100, this);
-            spiece = new ShortPiece(tile[Constant.MapRow + 3, Constant.MapColume],this);
+            lshape = new Lshape(this);
+            lpiece = new LongPiece(this);
+            beegboi = new BeegBoi(this);
+            spiece = new ShortPiece(this);
+            squareAttack = new SquareAttack(this);
+            starAttack = new StarAttack(this);
+            
         }
         public void drawPart(int row, int colume)
         {
@@ -140,7 +105,16 @@ namespace MineSweaper
                 return beegboi;
             if (signalReceive == Constant.ShortPieceID)
                 return spiece;
-            return lshape;
+            return null;
+        }
+
+        public ISkill getSkill()
+        {
+            if (signalReceive == Constant.squareAtkID)
+                return squareAttack;
+            if (signalReceive == Constant.starAtkID)
+                return starAttack;
+            return null;
         }
         public Lshape getLshape()
         {

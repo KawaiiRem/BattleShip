@@ -20,9 +20,8 @@ namespace WindowsFormsApp1
         private Boolean canDrawV = false; // be able to draw vertically
         private int health = Constant.LshapeV + Constant.LshapeH;
 
-        public Lshape(Tile tile, MineFieldManager fieldManager)
+        public Lshape(MineFieldManager fieldManager)
         {
-            this.tile = tile;
             this.fieldManager = fieldManager;
         }
 
