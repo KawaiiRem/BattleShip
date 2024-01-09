@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\
+D:\BattleShip-DSA-Project\BattleShip-DSA-Project\obj\Debug\net6.0-windows\
 BattleShip_DSA_Project
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip-DSA-Project\BattleShip-DSA-Project\App.xaml
+D:\BattleShip-DSA-Project\BattleShip-DSA-Project\App.xaml
 4-1818900443
 
-8119048289
-1941138084172
+241383525003
+2031807832829
 MainWindow.xaml;Pages\MainPage.xaml;Pages\PlayPage.xaml;Pages\SettingPage.xaml;
 
-True
+False
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsFormsApp1;
 
 namespace BattleShip_DSA_Project
 {
@@ -29,6 +30,14 @@ namespace BattleShip_DSA_Project
         {
             var window = (MainWindow)Application.Current.MainWindow;
             window.Content = (new MainPage());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Form1 form1 = new Form1();
+            var window = (MainWindow)Application.Current.MainWindow;
+            window.Close();
+            form1.ShowDialog();
         }
     }
 }

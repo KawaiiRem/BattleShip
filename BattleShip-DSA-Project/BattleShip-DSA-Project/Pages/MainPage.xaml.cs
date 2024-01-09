@@ -26,11 +26,12 @@ namespace BattleShip_DSA_Project
             InitializeComponent();
         }
 
+
+
         private void btnPlay(object sender, RoutedEventArgs e)
         {
             var window = (MainWindow)Application.Current.MainWindow;
             window.Content = (new PlayPage());
-
         }
 
         private void btnSetting(object sender, RoutedEventArgs e)
@@ -43,6 +44,11 @@ namespace BattleShip_DSA_Project
         {
             var window = (MainWindow)Application.Current.MainWindow;
             window.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

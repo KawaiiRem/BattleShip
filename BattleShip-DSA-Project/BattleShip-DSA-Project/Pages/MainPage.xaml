@@ -20,7 +20,7 @@
                 <Button Width="360" Margin="16" Content="Setting" Grid.Row="2" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold" Click="btnSetting"></Button>
             </Grid>
             <Grid Grid.Row="3" Height="80">
-                <Button Width="360" Margin="16" Content="Credit" Grid.Row="3" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold"></Button>
+                <Button Width="360" Margin="16" Content="Credit" Grid.Row="3" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold" Click="Button_Click"></Button>
             </Grid>
             <Grid Grid.Row="4" Height="30">
                 <Button Width="150" Margin=" 0 0 480 0" Content="Exit" Background="#FF9A0707" FontWeight="Bold" Click="btnExit"></Button>
