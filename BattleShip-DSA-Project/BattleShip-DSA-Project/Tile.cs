@@ -13,17 +13,18 @@ namespace WindowsFormsApp1
 {
     public class Tile
     {
-        private int posRow; 
+        private int posRow;
         private int posColume;
         private Button button;
         private Boolean shipPart = false;
         private MineFieldManager fieldManager;
         private int type = 0;
         private int state = 0;
-        private bool putShip = false;
+        private List<Vertex> visitedVertex;
 
         public Tile(Button button, int posRow, int posColume, MineFieldManager fieldManager)
         {
+            visitedVertex = new List<Vertex>();
             this.button = button;
             this.posRow = posRow;
             this.posColume = posColume;
@@ -31,28 +32,26 @@ namespace WindowsFormsApp1
             formAction();
         }
 
+        public void setState(int state)
+        {
+            this.state = state;
+            formAction();
+        }
+        
         public void formAction()
         {
             if(state == 0)
             {
-                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnter);
+                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterShip);
                 this.button.AllowDrop = true;
             }
             if (state == 1)
             {
+                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterSkill);
+                this.button.DragDrop +=new System.Windows.Forms.DragEventHandler(btnEventReleaseShip);
                 this.button.Click += new System.EventHandler(attackPlayer);
                 this.button.AllowDrop = true;
-                fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(this));
             }
-            if (state == 2)
-            {
-
-            }
-            if (state == 3)
-            {
-
-            }
-
         }
         
         public void isShip(Boolean input)
@@ -61,7 +60,6 @@ namespace WindowsFormsApp1
             {
                 shipPart = true;
                 button.BackColor = Color.Black;
-                this.putShip = true;
             }
             else if (input == false)
             {
@@ -69,9 +67,17 @@ namespace WindowsFormsApp1
                 button.BackColor = Color.Transparent;
             }
         }
-        public void setState(int state)
+
+        public void reDraw()
         {
-            this.state = state;
+            if (shipPart == true)
+            {
+                button.BackColor = Color.Black;
+            }
+            else if (shipPart == false)
+            {
+                button.BackColor = Color.Transparent;
+            }
         }
         
         public int getType()
@@ -114,21 +120,39 @@ namespace WindowsFormsApp1
         {
             return button;
         }
-        public void btnEventEnter(Object sender, DragEventArgs e)
+        public void btnEventEnterSkill(Object sender, DragEventArgs e)
+        {
+            e.Effect = e.AllowedEffect;
+            fieldManager.getSkill().setTile(this);
+        }
+
+        public void btnEventEnterShip(Object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
             fieldManager.getShip().setTile(this);
         }
 
+        public void btnEventReleaseShip(Object sender, DragEventArgs e)
+        {
+            e.Effect = e.AllowedEffect;
+            fieldManager.getSkill().attack();
+        }
+
         public void attackPlayer(Object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            button = sender as Button;
+            //fieldManager.getGraph().BFS(fieldManager.getGraph().getVertex(button), visitedVertex);
+            attack();
+        }
 
-                button.BackColor = Color.Gray;
-           
-
+        public bool attack()
+        {
+            setType(0);
+            isShip(false);
+            button.BackColor = Color.Gray;
+            fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(button));
             button.Enabled = false;
-
+            return true;
         }
     }
 }

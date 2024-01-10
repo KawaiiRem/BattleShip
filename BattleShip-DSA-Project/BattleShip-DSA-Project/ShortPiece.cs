@@ -16,9 +16,8 @@ namespace WindowsFormsApp1
         private Boolean canDraw = false;
         private int health = Constant.ShortL;
 
-        public ShortPiece(Tile tile, MineFieldManager fieldManager)
+        public ShortPiece(MineFieldManager fieldManager)
         {
-            this.tile = tile;
             this.fieldManager = fieldManager;
         }
 

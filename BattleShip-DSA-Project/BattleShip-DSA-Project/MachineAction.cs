@@ -18,15 +18,19 @@ namespace WindowsFormsApp1.Resources
         public void setShip()
         {
             Random rand = new Random();
-            while (!fieldManager.getLpiece().getDrew() || !fieldManager.getBeegBoi().getDrew() || !fieldManager.getLshape().getDrew() || !fieldManager.getShortPiece().getDrew())
+            while ( !fieldManager.getLpiece().getDrew() 
+                    || !fieldManager.getBeegBoi().getDrew() 
+                    || !fieldManager.getLshape().getDrew() 
+                    || !fieldManager.getShortPiece().getDrew()
+                )
             {
                 for (int type = 1; type <= 4; type++)
                 {
-                    for (int posRow = 0; posRow < Constant.MapRow; posRow += 1)
+                    for (int posRow = 1; posRow < Constant.MapRow-1; posRow += rand.Next(5))
                     {
-                        for (int posColume = 0; posColume < Constant.MapColume; posColume += 1)
+                        for (int posColume = 1; posColume < Constant.MapColume-1; posColume += rand.Next(5))
                         {
-                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 5)
+                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 3)
                             {
                                 switch (type)
                                 {
@@ -45,8 +49,6 @@ namespace WindowsFormsApp1.Resources
                                     case 4:
                                         if (!checkDrew(fieldManager.getShortPiece()))
                                             fieldManager.getShortPiece().setTile(fieldManager.getTile(posRow, posColume));
-                                        break;
-                                    default:
                                         break;
                                 }
                             }

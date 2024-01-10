@@ -32,7 +32,7 @@ namespace BattleShip_DSA_Project
             window.Content = (new MainPage());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
             Form1 form1 = new Form1();
             var window = (MainWindow)Application.Current.MainWindow;

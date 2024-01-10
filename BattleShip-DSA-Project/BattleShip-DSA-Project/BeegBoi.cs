@@ -17,9 +17,8 @@ namespace WindowsFormsApp1
         private Boolean canDraw = false;
         private int health = Constant.BeegBoiV + Constant.BeegBoiH;
 
-        public BeegBoi(Tile tile, MineFieldManager fieldManager)
+        public BeegBoi(MineFieldManager fieldManager)
         {
-            this.tile = tile;
             this.fieldManager = fieldManager;
         }
 

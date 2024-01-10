@@ -42,7 +42,6 @@ namespace WindowsFormsApp1
             pictureBox4 = new System.Windows.Forms.PictureBox();
             Utilities = new System.Windows.Forms.Panel();
             btnDone = new System.Windows.Forms.Button();
-            btnChange = new System.Windows.Forms.Button();
             panel2 = new System.Windows.Forms.Panel();
             panel3 = new System.Windows.Forms.Panel();
             label3 = new System.Windows.Forms.Label();
@@ -155,21 +154,11 @@ namespace WindowsFormsApp1
             // 
             btnDone.Location = new System.Drawing.Point(757, 610);
             btnDone.Name = "btnDone";
-            btnDone.Size = new System.Drawing.Size(243, 36);
+            btnDone.Size = new System.Drawing.Size(243, 80);
             btnDone.TabIndex = 7;
             btnDone.Text = "Done!";
             btnDone.UseVisualStyleBackColor = true;
             btnDone.Click += btnDone_Click;
-            // 
-            // btnChange
-            // 
-            btnChange.Location = new System.Drawing.Point(757, 654);
-            btnChange.Name = "btnChange";
-            btnChange.Size = new System.Drawing.Size(243, 36);
-            btnChange.TabIndex = 8;
-            btnChange.Text = "Change!";
-            btnChange.UseVisualStyleBackColor = true;
-            btnChange.Click += btnChange_Click;
             // 
             // panel2
             // 
@@ -236,7 +225,6 @@ namespace WindowsFormsApp1
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1032, 728);
-            Controls.Add(btnChange);
             Controls.Add(btnDone);
             Controls.Add(Utilities);
             Controls.Add(pictureBox4);
@@ -274,7 +262,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel Utilities;
         private System.Windows.Forms.Button btnDone;
-        private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

@@ -14,13 +14,13 @@
                 <Label Content="Setting" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" FontFamily="Arial Rounded MT Bold" Height="100" Width="267" Foreground="#FF345B90"/>
             </Grid>
             <Grid Grid.Row="1" Height="80">
-                <Button Width="360" Margin="16" Content="Sound" Grid.Row="1" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90"  FontWeight="Bold"></Button>
+                <Button Width="360" Margin="16" Content="Sound" Grid.Row="1" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90"  FontWeight="Bold" Click="btnSound_Click"></Button>
             </Grid>
             <Grid Grid.Row="2" Height="80">
-                <Button Width="360" Margin="16" Content="Window Size" Grid.Row="2" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold"></Button>
+                <Button Width="360" Margin="16" Content="Window Size" Grid.Row="2" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold" Click="btnWinSize_Click"/>
             </Grid>
             <Grid Grid.Row="3" Height="80">
-                <Button Width="360" Margin="16" Content="Hidden" Grid.Row="3" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold"></Button>
+                <Button Width="360" Margin="16" Content="Hidden" Grid.Row="3" FontSize="24" Foreground="#FFF1A90A" Background="#FF345B90" FontWeight="Bold" Click="btnHidden_Click"></Button>
             </Grid>
             <Grid Grid.Row="4" Height="30">
                 <Button Width="150" Margin=" 0 0 480 0" Content="Back" Background="#FF9A0707" FontWeight="Bold" Click="btnBack"></Button>

@@ -11,6 +11,12 @@
     <Compile Update="Pages\SettingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\SoundPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\WindowSizePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Form1.resx">
@@ -25,6 +31,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SettingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SoundPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\WindowSizePage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

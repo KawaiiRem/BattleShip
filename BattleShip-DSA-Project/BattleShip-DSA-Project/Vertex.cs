@@ -25,8 +25,18 @@ namespace WindowsFormsApp1
 
         public void removeEdge(Vertex endVertex)
         {
-            Edge edge = new Edge(this, endVertex);
-            edges.Remove(edge);
+            //Edge edge = new Edge(this, endVertex);
+            edges.RemoveAll(edge=>edge.getEnd().Equals(endVertex));
+        }
+
+        public List<Edge> getEdgeList()
+        {
+            return edges;
+        }
+
+        public Edge getEdge(int pos)
+        {
+            return edges[pos];
         }
         public Tile getTile()
         {

@@ -14,6 +14,12 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        System.Windows.Threading.DispatcherTimer dispatcherTimer2 = new System.Windows.Threading.DispatcherTimer();
+
+
+        private int randTurn = 0;
         #region properties
         MineFieldManager mineField;
         MineFieldManager mineField2;
@@ -30,15 +36,60 @@ namespace WindowsFormsApp1
             MachineAction AI = new MachineAction(mineField);
             Ulti ulti = new Ulti(Utilities, mineField);
 
-           
+            mineField2.drawMineSquare();
+            mineField2.setStateTite(1);
 
 
             mineField2.drawMineSquare();
 
             ulti.addUlti();
+            ulti.addSkill();
             mineField.drawMineSquare();
             AI.setShip();
+
+
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
         }
+
+        public void attack()
+        {
+            if (mineField2.attack())
+            {
+                if (panel1.Visible == true)
+                {
+                    panel1.Visible = false;
+                    panel2.Visible = true;
+
+                }
+                else
+                {
+                    panel2.Visible = false;
+                    panel1.Visible = true;
+                }
+            }
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (panel1.Visible == true)
+            {
+                panel1.Visible = false;
+                panel2.Visible = true;
+
+            }
+            else
+            {
+                panel2.Visible = false;
+                panel1.Visible = true;
+
+            }
+            dispatcherTimer.Stop();
+
+
+            getTurn();
+        }
+
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -91,54 +142,102 @@ namespace WindowsFormsApp1
         private void btnDone_Click(object sender, EventArgs e)
         {
             btnDone.Visible = false;
-            Utilities.Visible = false;
+            //Utilities.Visible = false;
             pictureBox1.Visible = false;
             pictureBox2.Visible = false;
             pictureBox3.Visible = false;
             pictureBox4.Visible = false;
 
 
-            mineField2 = new MineFieldManager(panel2);
-            mineField2.drawMineSquare();
-            mineField2.updateTiteState(1);
-
             getTurn();
+
         }
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (panel1.Visible == true)
-            {
-                panel1.Visible = false;
-                panel2.Visible = true;
 
-            }                         
-            else
-            {
-                panel2.Visible = false;
-                panel1.Visible = true;
-
-            }
 
         }
 
         private void getTurn()
         {
-            int randTurn = new Random().Next(0, 1);
-            if (randTurn < 1)
+
+            if (randTurn == 1)
             {
                 panel3.Visible = true;
                 panel3.BringToFront();
-                panel2.Visible=false;
-                panel1.Visible=true;
+                panel4.Visible = false;
+                panel2.Visible = false;
+                panel1.Visible = true;
+                randTurn++;
+
+
             }
-            else
-            {   //me
+            else if (randTurn == 0)
+            {
                 panel4.Visible = true;
                 panel4.BringToFront();
-                panel1.Visible=false;
-                panel2.Visible=true;
+                panel3.Visible = false;
+                panel1.Visible = false;
+                panel2.Visible = true;
+                randTurn--;
+
             }
+
+            /*if (randTurn == 0)
+            {
+                panel3.Visible = true;
+                panel3.BringToFront();
+                panel4.Visible = false;
+                panel2.Visible = false;
+                panel1.Visible = true;
+                randTurn++;
+
+
+            }
+            else if (randTurn == 1)
+            {
+                panel4.Visible = true;
+                panel4.BringToFront();
+                panel3.Visible = false;
+                panel1.Visible = false;
+                panel2.Visible = true;
+                randTurn--;
+
+
+
+
+            }
+            else
+            {
+                randTurn = new Random().Next(0, 1);
+                //if (randTurn == 0)
+                //{
+                    panel3.Visible = true;
+                    panel3.BringToFront();
+                    panel4.Visible = false;
+                    panel2.Visible = false;
+                    panel1.Visible = true;
+                    randTurn++;
+
+            //    }
+            /*
+                else
+                {
+                    panel4.Visible = true;
+                    panel4.BringToFront();
+                    panel3.Visible = false;
+                    panel1.Visible = false;
+                    panel2.Visible = true;
+                    randTurn--;
+                    dispatcherTimer.Start();
+
+
+                }
+                
+            }
+            */
+
         }
 
         private void panel3_MouseClick(object sender, MouseEventArgs e)
@@ -149,5 +248,6 @@ namespace WindowsFormsApp1
         {
             panel4.Visible = false;
         }
+
     }
 }
