@@ -1,4 +1,5 @@
-﻿using MineSweaper;
+﻿using BattleShip_DSA_Project;
+using MineSweaper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -78,15 +79,27 @@ namespace WindowsFormsApp1
         public void SquareAttack_Click(object sender, MouseEventArgs e)
         {
             Button button = sender as Button;
-            fieldManager.setSignal(Constant.squareAtkID);
-            ChenS2.DoDragDrop(button, DragDropEffects.Move);
+            if (fieldManager.getProgress().getCurrentEnergy() - 20 >= 0)
+            {
+                fieldManager.getProgress().currentEnergyReduce(20);
+                fieldManager.setSignal(Constant.squareAtkID);
+                ChenS2.DoDragDrop(button, DragDropEffects.Move);
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Not enough energy. Current" + fieldManager.getProgress().getCurrentEnergy());
         }
 
         public void StarAttack_Click(object sender, MouseEventArgs e)
         {
             Button button = sender as Button;
-            fieldManager.setSignal(Constant.starAtkID);
-            Godsenger.DoDragDrop(button, DragDropEffects.Move);
+            if (fieldManager.getProgress().getCurrentEnergy() - 25 >= 0)
+            {
+                fieldManager.getProgress().currentEnergyReduce(25);
+                fieldManager.setSignal(Constant.starAtkID);
+                Godsenger.DoDragDrop(button, DragDropEffects.Move);
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Not enough energy. Current" + fieldManager.getProgress().getCurrentEnergy());
         }
     }
 }

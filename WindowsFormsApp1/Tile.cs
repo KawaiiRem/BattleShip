@@ -133,6 +133,7 @@ namespace WindowsFormsApp1
         {
             e.Effect = e.AllowedEffect;
             fieldManager.getSkill().attack();
+            fieldManager.togglePanel();
         }
 
         public void attackPlayer(Object sender, EventArgs e)
@@ -140,18 +141,34 @@ namespace WindowsFormsApp1
             button = sender as Button;
             //fieldManager.getGraph().BFS(fieldManager.getGraph().getVertex(button), visitedVertex);
             attack();
+            fieldManager.getProgress().anounce();
+            fieldManager.togglePanel();
         }
 
-        public bool attack()
+        public void attack()
         {
-            isShip(false);
             if (type != 0)
+            {
+                if (fieldManager.getAI().getActive())
+                    fieldManager.getGraph().BFS(fieldManager.getGraph().getVertex(this.button), fieldManager.getAI().getTileToAttack());
                 button.BackColor = Color.Red;
+                if (type == Constant.ShortPieceID)
+                    fieldManager.getProgress().ShortHPReduce();
+                if (type == Constant.LshapeID)
+                    fieldManager.getProgress().LshapeHPReduce();
+                if (type == Constant.LongPieceID)
+                    fieldManager.getProgress().LongHPReduce();
+                if (type == Constant.BeegBoiID)
+                    fieldManager.getProgress().BeegBoiHPReduce();
+            }
             else
                 button.BackColor = Color.Gray;
-            //fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(button));
+            if (fieldManager.getAI().getActive())
+            { 
+                fieldManager.getAI().getTileToAttack().Remove(fieldManager.getGraph().getVertex(button));
+                fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(button));
+            }
             button.Enabled = false;
-            return true;
         }
     }
 }

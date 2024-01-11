@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleShip_DSA_Project;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1;
+using WindowsFormsApp1.Resources;
 using static System.Windows.Forms.AxHost;
 
 namespace MineSweaper
@@ -15,6 +17,7 @@ namespace MineSweaper
     {
         #region properties
         private Panel mineField;
+        private Panel mineField2;
         private int posRow;
         private int posColume;
         private Tile[,] tile;
@@ -26,14 +29,21 @@ namespace MineSweaper
         private Graph graph;
         private SquareAttack squareAttack;
         private StarAttack starAttack;
+        private ProgressManager progress;
+        private MachineAction AI;
+        private MineFieldManager otherMineField;
+        
         #endregion
 
         #region initiate 
-        public MineFieldManager(Panel mineField)
+        public MineFieldManager(Panel mineField, Panel mineField2, String text, Boolean active)
         {
             tile = new Tile[Constant.MapRow, Constant.MapColume];
             this.mineField = mineField;
-            graph = new Graph();    
+            this.mineField2 = mineField2;
+            graph = new Graph(this);
+            AI = new MachineAction(this, graph, active);
+            progress = new ProgressManager(100, text);
         }
         #endregion
 
@@ -71,6 +81,15 @@ namespace MineSweaper
             starAttack = new StarAttack(this);
 
         }
+        public void setOtherMineField(MineFieldManager otherMineField)
+        {
+            this.otherMineField = otherMineField;
+        }
+
+        public ProgressManager getProgress()
+        {
+            return progress;
+        }
 
         public void formShipAction()
         {
@@ -104,6 +123,7 @@ namespace MineSweaper
                 }
             }
         }
+        /*
         public bool attack()
         {
             for (posRow = 0; posRow < Constant.MapRow; posRow++)
@@ -119,8 +139,21 @@ namespace MineSweaper
                 }
             }
             return false;   
-        }
+        }*/
 
+        public void togglePanel()
+        {
+            if (mineField.Visible == true)
+            {
+                mineField.Visible = false;
+                mineField2.Visible = true;
+                if (otherMineField.getAI().getActive())
+                    otherMineField.getAI().attack();
+            }
+            progress.currentEnergyRaise(10);
+            if (progress.getCurrentEnergy() > progress.getMaxEnergy())
+                progress.currentEnergyReduce(progress.getCurrentEnergy() - progress.getMaxEnergy());
+        }
 
         public void drawPart(int row, int colume)
         {
@@ -190,13 +223,26 @@ namespace MineSweaper
 
         public void fillGraph()
         {
-            graph.addFieldVerticies(this);
-            graph.addFieldEdge(this);
+            graph.addFieldVerticies();
+            graph.addFieldEdge();
         }
 
         public Graph getGraph()
         {
             return graph;
+        }
+
+        public Boolean getDrew()
+        {
+            if (lshape.getDrew() && lpiece.getDrew() && beegboi.getDrew() && spiece.getDrew())
+                return true;
+            else
+                return false;
+        }
+
+        public MachineAction getAI()
+        {
+            return AI;
         }
         #endregion
     }

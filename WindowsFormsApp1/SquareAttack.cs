@@ -80,7 +80,8 @@ namespace WindowsFormsApp1
                 fieldManager.getTile(tile.getPosRow() + 1, tile.getPosColume() - 1).attack();
             if (tile.getPosRow() - 1 >= 0 && tile.getPosColume() + 1 < Constant.MapColume && fieldManager.getTile(tile.getPosRow() - 1, tile.getPosColume() + 1).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() - 1, tile.getPosColume() + 1).attack();
-            fieldManager.getTile(tile.getPosRow(), tile.getPosColume()).attack();
+            if(fieldManager.getTile(tile.getPosRow(), tile.getPosColume()).getButton().Enabled == true)
+                fieldManager.getTile(tile.getPosRow(), tile.getPosColume()).attack();
             drew = false;
         }
         

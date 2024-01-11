@@ -23,6 +23,12 @@ namespace MineSweaper
         public static int BeegBoiH = 6;
         public static int BeegBoiV = 3;
 
+        //Fleet HP
+        public static int LshapeHP = 10;
+        public static int LongHP = 10;
+        public static int ShortHP = 5;
+        public static int BeegBoiHP = 18;
+
         //FleetID
         public static int LshapeID = 1;
         public static int LongPieceID = 2;

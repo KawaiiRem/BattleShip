@@ -12,9 +12,11 @@ namespace WindowsFormsApp1
     public class Graph
     {
         private List<Vertex> vertices;
-        public Graph() 
+        private MineFieldManager fieldManager;
+        public Graph(MineFieldManager fieldManager) 
         {
-        vertices = new List<Vertex>();
+            this.fieldManager = fieldManager;
+            vertices = new List<Vertex>();
         }
         public void addVertex (Tile tile)
         {
@@ -23,11 +25,14 @@ namespace WindowsFormsApp1
 
         public void removeVertex(Vertex vertex)
         {
-            for (int i = 0; i < vertex.getEdgeList().Count; i++)
+            if (vertex.getEdgeList().Count > 0)
             {
-                Edge e = vertex.getEdge(i);
-                Vertex neighbor = e.getEnd();
-                neighbor.removeEdge(vertex);
+                for (int i = 0; i < vertex.getEdgeList().Count; i++)
+                {
+                    Edge e = vertex.getEdge(i);
+                    Vertex neighbor = e.getEnd();
+                    neighbor.removeEdge(vertex);
+                }
             }
             vertex.getEdgeList().Clear();
             vertices.Remove(vertex);
@@ -55,6 +60,12 @@ namespace WindowsFormsApp1
             return null;
         }
 
+        public Vertex getRandVertex()
+        {
+            Random random = new Random();
+            return vertices[random.Next(vertices.Count)];
+        }
+
         public Vertex getVertex(Button button)
         {
             for (int i = 0; i < vertices.Count; i++)
@@ -65,7 +76,7 @@ namespace WindowsFormsApp1
             return null;
         }
 
-        public void addFieldVerticies(MineFieldManager fieldManager)
+        public void addFieldVerticies()
         {
             for(int i = 0; i < Constant.MapRow; i++)
             {
@@ -74,7 +85,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void addFieldEdge(MineFieldManager fieldManager)
+        public void addFieldEdge()
         {
             for(int i = 0; i < Constant.MapRow-1; i++)
             {
@@ -109,14 +120,16 @@ namespace WindowsFormsApp1
             while(visitedQueue.Count != 0)
             {
                 Vertex current = visitedQueue.Dequeue();
-                current.getTile().getButton().BackColor = System.Drawing.Color.Green;
+                //current.getTile().getButton().BackColor = System.Drawing.Color.Green;
+                fieldManager.getAI().getTileToAttack().Remove(current);
+                fieldManager.getAI().getTileToAttack().Add(current);
                 for(int i = 0; i < current.getEdgeList().Count; i++)
                 {
                     Edge e = current.getEdge(i);
                     Vertex neighbor = e.getEnd();
                     if (!visitedVertices.Contains(neighbor))
                     {
-                        if (subLimit(start, neighbor) && count < 25)
+                        if (subLimit(start, neighbor) && count < 24)
                         {
                             visitedVertices.Add(neighbor);
                             visitedQueue.Enqueue(neighbor);

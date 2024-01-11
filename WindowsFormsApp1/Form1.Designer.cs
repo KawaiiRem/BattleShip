@@ -169,6 +169,7 @@ namespace WindowsFormsApp1
             panel2.Size = new System.Drawing.Size(718, 675);
             panel2.TabIndex = 9;
             panel2.Visible = false;
+            //panel2.MouseClick += panel2_MouseHover;
             // 
             // panel3
             // 

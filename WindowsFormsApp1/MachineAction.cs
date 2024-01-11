@@ -1,6 +1,11 @@
-﻿using MineSweaper;
+﻿using BattleShip_DSA_Project;
+using MineSweaper;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp1.Resources
 {
@@ -8,9 +13,24 @@ namespace WindowsFormsApp1.Resources
     {
         private static int count = 0;
         private MineFieldManager fieldManager;
-        public MachineAction(MineFieldManager fieldManager)
+        private List<Vertex> tileToAttack;
+        private Graph graph;
+        private Random rand;
+        private Boolean active;
+        private int gear = 1;
+        private Random random;
+        public MachineAction(MineFieldManager fieldManager, Graph graph, Boolean active)
         {
+            this.active = active;
+            rand = new Random();
+            tileToAttack = new List<Vertex>();
             this.fieldManager = fieldManager;
+            this.graph = graph;
+            random = new Random();
+        }
+        public Boolean getActive()
+        {
+            return active;
         }
 
         public void setShip()
@@ -63,9 +83,42 @@ namespace WindowsFormsApp1.Resources
             return ship.getDrew();
         }
         
-        public void attack(MineFieldManager fieldManager)
+        public List<Vertex> getTileToAttack()
         {
+            return tileToAttack;
+        }
 
+        public async void attack()
+        {
+            if(gear == 1)
+            {
+                Vertex vertex = fieldManager.getGraph().getRandVertex();
+                fieldManager.getTile(vertex.getTile().getPosRow(), vertex.getTile().getPosColume()).attack();
+                if (tileToAttack.Count > 0 && fieldManager.getProgress().getCurrentEnergy() == fieldManager.getProgress().getMaxEnergy())
+                    gear = 3;
+                else if (fieldManager.getProgress().getCurrentEnergy() == fieldManager.getProgress().getMaxEnergy())
+                    gear = 2;
+            }
+            else if (gear == 2)
+            {
+                Vertex vertex = fieldManager.getGraph().getRandVertex();
+                fieldManager.setSignal(rand.Next(5, 6));
+                fieldManager.getSkill().setTile(fieldManager.getTile(vertex.getTile().getPosRow(), vertex.getTile().getPosColume()));
+                fieldManager.getSkill().attack();
+                if (fieldManager.getProgress().getCurrentEnergy() <= 30)
+                    gear = 1;
+            }
+            else
+            {
+                fieldManager.setSignal(rand.Next(5, 6));
+                fieldManager.getSkill().setTile(tileToAttack[rand.Next(0, tileToAttack.Count - 1)].getTile());
+                fieldManager.getSkill().attack();
+                if (tileToAttack.Count == 0 || fieldManager.getProgress().getCurrentEnergy() <= 30)
+                    gear = 1;
+            }
+
+            await Task.Delay(2000);
+            fieldManager.togglePanel();
         }
     }
 }
