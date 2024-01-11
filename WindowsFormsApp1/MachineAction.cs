@@ -6,10 +6,8 @@ namespace WindowsFormsApp1.Resources
 {
     public class MachineAction
     {
-        static int count = 0;
+        private static int count = 0;
         private MineFieldManager fieldManager;
-        private int[,] action = new int[Constant.MapRow, Constant.MapColume];
-
         public MachineAction(MineFieldManager fieldManager)
         {
             this.fieldManager = fieldManager;
@@ -18,7 +16,11 @@ namespace WindowsFormsApp1.Resources
         public void setShip()
         {
             Random rand = new Random();
-            while (!fieldManager.getLpiece().getDrew() || !fieldManager.getBeegBoi().getDrew() || !fieldManager.getLshape().getDrew() || !fieldManager.getShortPiece().getDrew())
+            while ( !fieldManager.getLpiece().getDrew() 
+                    || !fieldManager.getBeegBoi().getDrew() 
+                    || !fieldManager.getLshape().getDrew() 
+                    || !fieldManager.getShortPiece().getDrew()
+                )
             {
                 for (int type = 1; type <= 4; type++)
                 {
@@ -26,7 +28,7 @@ namespace WindowsFormsApp1.Resources
                     {
                         for (int posColume = 1; posColume < Constant.MapColume-1; posColume += rand.Next(5))
                         {
-                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 3)
+                            if (fieldManager.getTile(posRow, posColume).getIsShip() == false && rand.Next(100) <= 2)
                             {
                                 switch (type)
                                 {
@@ -61,7 +63,7 @@ namespace WindowsFormsApp1.Resources
             return ship.getDrew();
         }
         
-        public void attack()
+        public void attack(MineFieldManager fieldManager)
         {
 
         }

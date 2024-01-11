@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1;
+using static System.Windows.Forms.AxHost;
 
 namespace MineSweaper
 {
@@ -16,7 +17,7 @@ namespace MineSweaper
         private Panel mineField;
         private int posRow;
         private int posColume;
-        private static Tile[,] tile;
+        private Tile[,] tile;
         private Lshape lshape;
         private LongPiece lpiece;
         private BeegBoi beegboi;
@@ -68,8 +69,59 @@ namespace MineSweaper
             spiece = new ShortPiece(this);
             squareAttack = new SquareAttack(this);
             starAttack = new StarAttack(this);
-            
+
         }
+
+        public void formShipAction()
+        {
+            for (posRow = 0; posRow < Constant.MapRow; posRow++)
+            {
+                for (posColume = 0; posColume < Constant.MapColume; posColume++)
+                {
+                    tile[posRow, posColume].formShipAction();
+                }
+            }
+        }
+
+        public void removeShipAction()
+        {
+            for(posRow = 0; posRow < Constant.MapRow; posRow++)
+            {
+                for(posColume = 0; posColume < Constant.MapColume; posColume++)
+                {
+                    tile[posRow, posColume].removeShipAction();
+                }
+            }
+        }
+
+        public void formSkillAction()
+        {
+            for (posRow = 0; posRow < Constant.MapRow; posRow++)
+            {
+                for (posColume = 0; posColume < Constant.MapColume; posColume++)
+                {
+                    tile[posRow, posColume].formSkillAction();
+                }
+            }
+        }
+        public bool attack()
+        {
+            for (posRow = 0; posRow < Constant.MapRow; posRow++)
+            {
+                for (posColume = 0; posColume < Constant.MapColume; posColume++)
+                {
+
+                    if(tile[posRow, posColume].attack())
+                    {
+                        return true;
+                    }
+
+                }
+            }
+            return false;   
+        }
+
+
         public void drawPart(int row, int colume)
         {
             tile[row, colume].isShip(true);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,6 @@ namespace WindowsFormsApp1
         private Boolean shipPart = false;
         private MineFieldManager fieldManager;
         private int type = 0;
-        private int state = 0;
         private List<Vertex> visitedVertex;
 
         public Tile(Button button, int posRow, int posColume, MineFieldManager fieldManager)
@@ -29,23 +29,26 @@ namespace WindowsFormsApp1
             this.posRow = posRow;
             this.posColume = posColume;
             this.fieldManager = fieldManager;
-            formAction();
+        }
+        
+        public void formShipAction()
+        {
+            this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterShip);
+            this.button.AllowDrop = true;
         }
 
-        public void formAction()
+        public void removeShipAction()
         {
-            if(state == 0)
-            {
-                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterShip);
-                this.button.AllowDrop = true;
-            }
-            if (state == 1)
-            {
-                this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterSkill);
-                this.button.DragDrop +=new System.Windows.Forms.DragEventHandler(btnEventReleaseShip);
-                this.button.Click += new System.EventHandler(attackPlayer);
-                this.button.AllowDrop = true;
-            }
+            this.button.DragEnter -= new System.Windows.Forms.DragEventHandler(btnEventEnterShip);
+            this.button.AllowDrop = false;
+        }
+    
+        public void formSkillAction()
+        {
+            this.button.DragEnter += new System.Windows.Forms.DragEventHandler(btnEventEnterSkill);
+            this.button.DragDrop += new System.Windows.Forms.DragEventHandler(btnEventReleaseShip);
+            this.button.Click += new System.EventHandler(attackPlayer);
+            this.button.AllowDrop = true;
         }
         
         public void isShip(Boolean input)
@@ -139,13 +142,16 @@ namespace WindowsFormsApp1
             attack();
         }
 
-        public void attack()
+        public bool attack()
         {
-            setType(0);
             isShip(false);
-            button.BackColor = Color.Gray;
-            fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(button));
+            if (type != 0)
+                button.BackColor = Color.Red;
+            else
+                button.BackColor = Color.Gray;
+            //fieldManager.getGraph().removeVertex(fieldManager.getGraph().getVertex(button));
             button.Enabled = false;
+            return true;
         }
     }
 }

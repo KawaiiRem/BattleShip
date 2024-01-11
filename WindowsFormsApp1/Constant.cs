@@ -9,8 +9,8 @@ namespace MineSweaper
     public class Constant
     {
         //Windows form stats
-        public static int MapRow = 20;
-        public static int MapColume = 20;
+        public static int MapRow = 25;
+        public static int MapColume = 25;
         public static int TileWidth = 20;
         public static int TileHeight = 20;
         public static int TileNumb = 50;

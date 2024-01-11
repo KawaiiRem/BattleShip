@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
 
             if (tile.getPosRow() + 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).reDraw();
-            if (tile.getPosRow() - 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
+            if (tile.getPosRow() - 2 >= 0 && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).reDraw();
             if (tile.getPosColume() + 2 < Constant.MapColume && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).reDraw();
@@ -70,7 +70,7 @@ namespace WindowsFormsApp1
 
             if (tile.getPosRow() + 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).getButton().BackColor = System.Drawing.Color.Red;
-            if (tile.getPosRow() - 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
+            if (tile.getPosRow() - 2 >= 0 && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().BackColor = System.Drawing.Color.Red;
             if (tile.getPosColume() + 2 < Constant.MapColume && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).getButton().BackColor = System.Drawing.Color.Red;
@@ -101,7 +101,7 @@ namespace WindowsFormsApp1
 
             if (tile.getPosRow() + 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() + 2, tile.getPosColume()).attack();
-            if (tile.getPosRow() - 2 < Constant.MapRow && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
+            if (tile.getPosRow() - 2 >= 0 && fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow() - 2, tile.getPosColume()).attack(); ;
             if (tile.getPosColume() + 2 < Constant.MapColume && fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).getButton().Enabled == true)
                 fieldManager.getTile(tile.getPosRow(), tile.getPosColume() + 2).attack();
