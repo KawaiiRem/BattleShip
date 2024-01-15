@@ -32,6 +32,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.duelStateButton = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -81,6 +82,16 @@
             this.duelStateButton.UseVisualStyleBackColor = true;
             this.duelStateButton.CheckedChanged += new System.EventHandler(this.PlayMusic);
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(337, 232);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(235, 80);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Credit";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -88,6 +99,7 @@
             this.BackgroundImage = global::GameScreen.Properties.Resources.BattleShip1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(866, 525);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.duelStateButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -105,6 +117,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox duelStateButton;
+        private System.Windows.Forms.Button button3;
     }
 }
 

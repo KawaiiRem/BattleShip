@@ -47,5 +47,6 @@ namespace GameScreen
             playMusic.URL = "C:\\Users\\admin\\source\\repos\\GameScreen\\GameScreen\\bin\\Debug\\Usagi_Flap.mp3";
             playMusic.Ctlcontrols.play();
         }
+        
     }
 }
