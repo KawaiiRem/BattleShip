@@ -18,3 +18,13 @@ C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip
 C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.CoreCompileInputs.cache
 C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.exe
 C:\Users\vuduc\Desktop\DSA\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.exe.config
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.exe
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.exe
+C:\Users\admin\Desktop\DSA_Project\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
